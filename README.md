@@ -42,5 +42,5 @@ git clone https://github.com/parthac98/second-hand-cars.git
 1. Sorting and Formatting (I think to do this I need to change the structure of the JSON data, I wasted time to find out the way)
 2. Did not made the more info popup because 98% data are already shown in the tile and also jquery is not working. This is also the reason that not able to make CART popup (need to find out the reason)
 
-# Mare addition could have been done
+# More addition could have been done
 Though the main JSON object is updating by the value of 'FAV' and 'Add To Cart' we can easyli make the changes to the UI as we want. But I was out of time.
