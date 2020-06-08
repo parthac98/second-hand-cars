@@ -1,38 +1,78 @@
-<div class="container">
-  <h2>Image Gallery</h2>
-  <p>The .thumbnail class can be used to display an image gallery.</p>
-  <p>The .caption class adds proper padding and a dark grey color to text inside thumbnails.</p>
-  <p>Click on the images to enlarge them.</p>
-  <div class="row">
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <a href="/w3images/lights.jpg" target="_blank">
-          <img src="/w3images/lights.jpg" alt="Lights" style="width:100%">
-          <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <a href="/w3images/nature.jpg" target="_blank">
-          <img src="/w3images/nature.jpg" alt="Nature" style="width:100%">
-          <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-          </div>
-        </a>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <a href="/w3images/fjords.jpg" target="_blank">
-          <img src="/w3images/fjords.jpg" alt="Fjords" style="width:100%">
-          <div class="caption">
-            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-          </div>
-        </a>
-      </div>
+<header>
+  <div class="navbar navbar-dark bg-dark box-shadow">
+    <div class="container d-flex">
+      <a href="#" class="navbar-brand d-flex align-items-center">
+        <strong>Second Hand Cars</strong>
+      </a>
     </div>
   </div>
-</div>
+</header>
+
+<main role="main">
+  <div class="album py-5 bg-light">
+    <div class="container">
+      <!-- top sort and filter section starts -->
+      <div class="row">&nbsp;</div>
+      <!-- top sort and filter section ends -->
+
+      <!-- main tile section starts -->
+      <div class="row">
+        <!-- main loop data starts -->
+        <span *ngFor="let carData of carDataAllInOne | keyvalue">
+          <!-- loop to show all car's under a perticular warehouse, main tile, starts -->
+          <div class="col-md-4" *ngFor="let car of carData.value.cars.vehicles | keyvalue">
+            <div class= "card mb-4 box-shadow" [ngClass]="{'single-car-div' : car.value.licensed}" data-toggle="modal" data-target="#exampleModal">
+              <!-- tile top info section starts -->
+              <div class="mainInfoDivLeft">
+                {{ car.value.make }} - {{ car.value.model }}
+                <span style="font-size: 10px;"> {{ car.value.year_model }} </span>
+              </div>
+              <!-- tile top info section ends -->
+              
+              <!-- tile top image section starts -->  
+              <img class="card-img-top" src="assets/img/place-holder-image.png" alt="Card image cap">
+              <!-- tile top image section ends -->
+              
+              <!-- tile bottom info section starts -->    
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center infoSectionDiv">
+                  <span class="infosectionLeft">
+                    <span class="main-title">Warehouse : </span><span class="main-text">{{ carData.value.name }}</span>
+                    <br/>
+                    <span class="main-title">Car Location : </span><span class="main-text">{{ carData.value.cars.location }}</span>
+                  </span>  
+                  <span class="infosectionright">
+                    <a href="http://www.google.com/maps/place/{{ carData.value.location.lat }},{{ carData.value.location.lat }}" target="_blank">Open Map</a>
+                  </span>
+                </div>  
+                <div class="d-flex justify-content-between align-items-center">
+                  <div>
+                    <button (click)="addToFab($event, car.value._id)" type="button" style="margin-right: 4px;" class="btn btn-warning">Favorite {{ car.value.fav }}</button>
+                    <button (click)="addToCart($event, car.value._id)" type="button" class="btn btn-info">Add To Cart {{ car.value.addedToCart }}</button>
+                  </div>
+                  <small class="text-muted">{{ car.value.price  | currency : "€"}}</small>
+                </div>
+              </div>
+              <!-- tile bottom info section ends -->
+            </div>
+          </div>
+          <!-- loop to show all car's under a perticular warehouse, main tile, ends -->
+        </span>
+        <!-- main loop data ends -->  
+      </div>
+      <!-- main tile section ends -->
+
+    </div>
+  </div>
+</main>
+
+<!-- footer section starts -->
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>Second Hand Car &copy; 2020</p>
+  </div>
+</footer>
+<!-- footer section ends -->
