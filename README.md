@@ -8,6 +8,7 @@ Please install the below mentioned softwares if it is not installed
 
 # Download
 Please run the below mentioned command to download the project to your desired folder
+
 git clone https://github.com/parthac98/second-hand-cars.git
 
 # Please follow the below steps to run tha project
